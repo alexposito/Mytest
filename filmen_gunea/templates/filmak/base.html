@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="eu">
+   <head>
+      <title>{% block title %}{% endblock %}</title>
+   </head>
+
+   <body>
+       <h1> Filmen gunea</h1>
+       <h3> {{ user.username }}</h3>
+       <ul>
+        {% block head %}
+        {% endblock %}
+        </ul>
+
+        <hr>
+        {% block content %}{% endblock %}
+
+   </body>
+</html>

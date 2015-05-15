@@ -1,0 +1,41 @@
+{% load url from future %}
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Hasiera</title>
+   </head>
+<body>
+
+   <h1> Filmen gunea</h1>
+   <h3> {{ user.username }}</h3>
+   <ul>
+      <li><a href="{% url 'ikusi' %}">Filmak ikusi</a></li>
+      <li><a href="{% url 'bozkatu' %}">Filmak bozkatu</a></li>
+      <li><a href="{% url 'logout' %}">Irten</a></li>
+   </ul> 
+   <hr>
+   <table>
+       <tr>
+           <th>Izenburua</th>
+           <th>Zuzendaria</th>
+           <th>Urtea</th>
+           <th>Generoa</th>
+           <th>Sinopsia</th>
+           <th>Bozkak</th>
+       </tr>
+       {% for f in filmak %}
+       <tr>
+           <td>{{ f.izenburua }}</td>
+           <td>{{ f.zuzendaria }}</td>
+           <td>{{ f.urtea }}</td>
+           <td>{{ f.generoa }}</td>
+           <td>{{ f.sinopsia }}</td>
+           <td><a href="/filmak/bozkak/{{ f.id }}">{{ f.bozkak }}</a></td>
+       </tr>
+       {% endfor %}
+   </table>
+</body>
+</html> 
+
+

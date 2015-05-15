@@ -1,0 +1,10 @@
+{% extends "filmak/base.html" %}
+{% load url from future %}
+
+{% block title %}Hasiera{% endblock %}
+
+{% block head %}
+      <li><a href="{% url 'ikusi' %}">Filmak ikusi</a></li>
+      <li><a href="{% url 'bozkatu' %}">Filmak bozkatu</a></li>
+      <li><a href="{% url 'logout' %}">Irten</a></li>
+{% endblock %}

@@ -1,0 +1,3 @@
+url(r'^$', 'django.contrib.auth.views.login', {'template_name': 'registration/login.html', 'extra_context':{'next':'filmak/hasiera'}}),
+<h1> Kaixo!!!! </h1>
+<a href="{% url 'django.contrib.auth.views.logout' %}">Irten</a>

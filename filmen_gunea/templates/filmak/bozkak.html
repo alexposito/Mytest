@@ -1,0 +1,24 @@
+{% extends "filmak/base.html" %}
+{% load url from future %}
+
+{% block title %}Bozkak{% endblock %}
+
+{% block head %}
+      <li><a href="{% url 'ikusi' %}">Filmak ikusi</a></li>
+      <li><a href="{% url 'bozkatu' %}">Filmak bozkatu</a></li>
+      <li><a href="{% url 'logout' %}">Irten</a></li>
+{% endblock %}
+
+{% block content %}
+
+      {% if not bozkatzaileak %}
+         <h3> {{ filma.izenburua }} filma ez du inork bozkatu <h3>
+      {% else %}
+         <h3> {{ filma.izenburua }} filma bozkatu dutenak: <h3>
+         <ul>
+            {% for b in bozkatzaileak %}
+               <li>{{ b.erabiltzailea_id.username }}<li>
+            {% endfor %}
+      {% endif %}
+       
+{% endblock %}

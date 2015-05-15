@@ -1,0 +1,77 @@
+#erabiltzaileak sortu
+>>> erab = User.objects.create_user('user1', 'user001@ehu.es', 'user1')
+>>> erab2 = User.objects.create_user('user2', 'user002@ehu.es', 'user2')
+
+#erabiltzaileen datuak ikusi
+>>> erab.id
+7L
+>>> erab2.id
+8L
+>>> erab.username
+u'user1'
+>>> erab2.username
+'user2'
+>>> erab.email
+u'user001@ehu.es'
+>>> erab2.email
+'user002@ehu.es'
+
+#erabiltzaileen lista ikusi
+>>> User.objects.all()
+[<User: user13>, <User: user1>, <User: user2>]
+
+#One to One erlazioa ezarri
+>>> bozka = bozkatzailea(erabiltzailea_id=erab)
+>>> bozka2 = bozkatzailea(erabiltzailea_id=erab2)
+>>> bozka.save()
+>>> bozka2.save()
+
+#erlazioa egiaztatu
+>>> bozka.erabiltzailea_id
+<User: user1>
+>>> bozka2.erabiltzailea_id
+<User: user2>
+
+#filma gehitu 'bozka' bozkatzaileari
+>>> casa = filma.objects.filter(izenburua__startswith='Casa')[0]
+>>> bozka.gogoko_filmak.add(casa)
+>>> bozka.gogoko_filmak.all()
+[<filma: Casablanca>]
+
+#filma gehitu 'bozka' bozkatzaileari
+>>> ciudad = filma.objects.filter(izenburua__startswith='Ci')[0]
+>>> bozka.gogoko_filmak.add(ciudad)
+>>> bozka.gogoko_filmak.all()
+[<filma: Casablanca>, <filma: Cidade de Deus>]
+
+#filma gehitu 'bozka' bozkatzaileari
+>>> memento = filma.objects.filter(izenburua__startswith='Me')[0]
+>>> bozka.gogoko_filmak.add(memento)
+>>> bozka.gogoko_filmak.all()
+[<filma: Casablanca>, <filma: Cidade de Deus>, <filma: Memento>]
+
+#filma kendu 'bozka' bozkatzaileari (erlazioa kendu)
+>>> bozka.gogoko_filmak.remove(memento)
+>>> bozka.gogoko_filmak.all()
+[<filma: Casablanca>, <filma: Cidade de Deus>]
+#erlazioa ezabatu da baina "Memento" pelikula oraindik existitzen da.
+>>> filma.objects.all()
+[<filma: Casablanca>, <filma: Cidade de Deus>, <filma: Memento>, <filma: The Pianist>, <filma: Hotel Rwanda>, <filma: Amores perros>]
+
+#filma ezabatu
+>>> memento.delete()
+>>> filma.objects.all()
+[<filma: Casablanca>, <filma: Cidade de Deus>, <filma: The Pianist>, <filma: Hotel Rwanda>, <filma: Amores perros>]
+
+#filma ezabatu denez, 'bozka' bozkatzailearen pelikulen artean jada ez da 'Memento' agertzen.
+>>> bozka.gogoko_filmak.all()
+[<filma: Casablanca>, <filma: Cidade de Deus>]
+
+#'bozka' erabiltzaileari gogoko film guztien erlazioa ezabatu
+>>> bozka.gogoko_filmak.clear()
+>>> bozka.gogoko_filmak.all()
+[]
+
+#erlazioak bakarrik ezabatu direla egiaztatu
+>>> filma.objects.all()
+[<filma: Casablanca>, <filma: Cidade de Deus>, <filma: The Pianist>, <filma: Hotel Rwanda>, <filma: Amores perros>]

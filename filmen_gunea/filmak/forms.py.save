@@ -1,0 +1,8 @@
+from django import forms
+class KontaktuFormularioa(forms.Form):
+    user_name = forms.CharField(label='Erabiltzaile izena', max_length=30)
+    first_name = forms.CharField(label='Izena', max_length=30)
+    last_name = forms.CharField(label='Abizena', max_length=30)
+    email = forms.EmailField(label='eposta', max_length=75)
+    password = forms.BooleanField(required=False)
+

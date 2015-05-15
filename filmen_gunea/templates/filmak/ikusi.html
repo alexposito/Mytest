@@ -1,0 +1,34 @@
+{% extends "filmak/base.html" %}
+{% load url from future %}
+
+{% block title %}Filmak ikusi{% endblock %}
+
+{% block head %}
+      <li><a href="{% url 'bozkatu' %}">Filmak bozkatu</a></li>
+      <li><a href="{% url 'logout' %}">Irten</a></li>
+{% endblock %}
+
+{% block content %}
+   <table>
+       <tr>
+           <th>Izenburua</th>
+           <th>Zuzendaria</th>
+           <th>Urtea</th>
+           <th>Generoa</th>
+           <th>Sinopsia</th>
+           <th>Bozkak</th>
+       </tr>
+       {% for f in filmak %}
+       <tr>
+           <td>{{ f.izenburua }}</td>
+           <td>{{ f.zuzendaria }}</td>
+           <td>{{ f.urtea }}</td>
+           <td>{{ f.generoa }}</td>
+           <td>{{ f.sinopsia }}</td>
+           <td><a href="/filmak/bozkak/{{ f.id }}">{{ f.bozkak }}</a></td>
+       </tr>
+       {% endfor %}
+   </table>
+{% endblock %}
+
+

@@ -1,0 +1,19 @@
+{% load url from future %}
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Hasiera</title>
+   </head>
+<body>
+
+   <h1> Filmen gunea</h1>
+   <h3> {{ user.username }}</h3>
+   <ul>
+      <li><a href="{% url 'ikusi' %}">Filmak ikusi</a></li>
+      <li><a href="{% url 'bozkatu' %}">Filmak bozkatu</a></li>
+      <li><a href="{% url 'logout' %}">Irten</a></li>
+   </ul> 
+   <hr>
+</body>
+</html> 
